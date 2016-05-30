@@ -1,2 +1,10 @@
+QT += core
+
+TARGET = QtSerialization
+
 SOURCES += \
-    main.cpp
+    main.cpp \
+    playerinforeader.cpp
+
+HEADERS += \
+    playerinforeader.h
