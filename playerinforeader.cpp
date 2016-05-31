@@ -74,7 +74,7 @@ QList<InventoryItem> PlayerInfoReader::readInventory()
 {
     QList<InventoryItem> inventory;
     while (reader.readNextStartElement()) {
-        if (tokenByName(reader.name()) == T_InvItem) {
+        if (tokenByName(reader.name()) != T_InvItem) {
             reader.skipCurrentElement();
             continue;
         }
