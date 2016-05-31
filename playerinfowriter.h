@@ -13,9 +13,9 @@ public:
     bool write(PlayerInfo pinfo);
 
 private:
-    bool writePlayerInfo();
-    Player writePlayer();
-    QList<InventoryItem> writeInventory();
+    bool writePlayerInfo(PlayerInfo p_info);
+    void writePlayer(Player player);
+    void writeInventory(QList<InventoryItem> inventroy);
 
     QXmlStreamWriter writer;
 };

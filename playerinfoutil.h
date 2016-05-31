@@ -33,15 +33,20 @@ enum Token {
     T_InvItem                                           /* in Inventory */
 };
 
+static const QStringList tokenList = QStringList()
+                                     << "PlayerInfo" << "Player"
+                                     << "Name" << "Password"
+                                     << "Inventory" << "Location"
+                                     << "Position" << "InvItem";
+
 static Token tokenByName(const QStringRef &r)
 {
-    static QStringList tokenList = QStringList()
-                                   << "PlayerInfo" << "Player"
-                                   << "Name" << "Password"
-                                   << "Inventory" << "Location"
-                                   << "Position" << "InvItem";
-    int idx = tokenList.indexOf(r.toString());
-    return (Token)idx;
+    return (Token) tokenList.indexOf(r.toString());
+}
+
+static QString nameByToken(const Token &t)
+{
+    return tokenList.at((int) t);
 }
 
 #endif // PLAYERINFOUTIL_H

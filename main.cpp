@@ -1,4 +1,5 @@
 #include "playerinforeader.h"
+#include "playerinfowriter.h"
 
 #include <QFile>
 #include <QDebug>
@@ -18,13 +19,19 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    QFile file(path);
-    file.open(QFile::ReadOnly | QFile::Text);
-    PlayerInfoReader pir(&file);
+    QFile fileRead(path);
+    fileRead.open(QFile::ReadOnly | QFile::Text);
+    PlayerInfoReader pir(&fileRead);
 
     if (pir.read()) {
         PlayerInfo playerInfo = pir.result();
-        //TODO
+        fileRead.close();
+
+        QFile fileWrite("TestOut.xml");
+        fileWrite.open(QFile::WriteOnly | QFile::Truncate);
+        PlayerInfoWriter piw(&fileWrite);
+        piw.write(playerInfo);
+        fileWrite.close();
     } else {
         qDebug() << "Could not read file";
     }
