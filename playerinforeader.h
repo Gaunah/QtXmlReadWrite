@@ -2,40 +2,12 @@
 #define PLAYERINFOREADER_H
 
 #include <QIODevice>
-#include <QPoint>
 #include <QXmlStreamReader>
 
-struct InventoryItem {
-    enum Type { Weapon, Armor, Gem, Book, Other } type;
-    QString subType;
-    int durability;
-};
-
-struct Player {
-    QString name;
-    QString password;
-    int experience;
-    int hitPoints;
-    QList<InventoryItem> inventory;
-    QString location;
-    QPoint position;
-};
-
-struct PlayerInfo {
-    QList<Player> players;
-};
+#include "playerinfoutil.h"
 
 class PlayerInfoReader
 {
-
-    enum Token {
-        T_Invalid = -1,
-        T_PlayerInfo,                                       /* root tag */
-        T_Player,                                           /* in PlayerInfo */
-        T_Name, T_Password, T_Inventory, T_Location,        /* in Player */
-        T_Position,                                         /* in Location */
-        T_InvItem                                           /* in Inventory */
-    };
 
 public:
     explicit PlayerInfoReader(QIODevice *dev);
@@ -44,7 +16,6 @@ public:
     bool read();
 
 private:
-    static Token tokenByName(const QStringRef &r);
     bool readPlayerInfo();
     Player readPlayer();
     QList<InventoryItem> readInventory();

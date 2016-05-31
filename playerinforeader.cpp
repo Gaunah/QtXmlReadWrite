@@ -15,17 +15,6 @@ bool PlayerInfoReader::read()
     }
 }
 
-PlayerInfoReader::Token PlayerInfoReader::tokenByName(const QStringRef &r)
-{
-    static QStringList tokenList = QStringList()
-                                   << "PlayerInfo" << "Player"
-                                   << "Name" << "Password"
-                                   << "Inventory" << "Location"
-                                   << "Position" << "InvItem";
-    int idx = tokenList.indexOf(r.toString());
-    return (Token)idx;
-}
-
 bool PlayerInfoReader::readPlayerInfo()
 {
     if (tokenByName(reader.name()) != T_PlayerInfo) {

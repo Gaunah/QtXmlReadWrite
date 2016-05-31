@@ -4,7 +4,10 @@ TARGET = QtSerialization
 
 SOURCES += \
     main.cpp \
-    playerinforeader.cpp
+    playerinforeader.cpp \
+    playerinfowriter.cpp
 
 HEADERS += \
-    playerinforeader.h
+    playerinforeader.h \
+    playerinfowriter.h \
+    playerinfoutil.h
