@@ -45,9 +45,6 @@ Player PlayerInfoReader::readPlayer()
         case T_Name:
             p.name = reader.readElementText();
             break;
-        case T_Password:
-            p.password = reader.readElementText();
-            break;
         case T_Inventory:
             p.inventory = readInventory();
             break;

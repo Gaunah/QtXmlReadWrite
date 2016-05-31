@@ -1,7 +1,6 @@
 <PlayerInfo>
 	<Player hp="40" exp="23456">
 		<Name>Gandalf</Name>
-		<Password>mithrandir</Password>
 		<Inventory>
 			<InvItem type="weapon" durability="3">
 				<SubType>Long sword</SubType>

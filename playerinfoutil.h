@@ -12,7 +12,6 @@ struct InventoryItem {
 
 struct Player {
     QString name;
-    QString password;
     int experience;
     int hitPoints;
     QList<InventoryItem> inventory;
@@ -26,16 +25,15 @@ struct PlayerInfo {
 
 enum Token {
     T_Invalid = -1,
-    T_PlayerInfo,                                       /* root tag */
-    T_Player,                                           /* in PlayerInfo */
-    T_Name, T_Password, T_Inventory, T_Location,        /* in Player */
-    T_Position,                                         /* in Location */
-    T_InvItem                                           /* in Inventory */
+    T_PlayerInfo,                               /* root tag */
+    T_Player,                                   /* in PlayerInfo */
+    T_Name, T_Inventory, T_Location,            /* in Player */
+    T_Position,                                 /* in Location */
+    T_InvItem                                   /* in Inventory */
 };
 
 static const QStringList tokenList = QStringList()
-                                     << "PlayerInfo" << "Player"
-                                     << "Name" << "Password"
+                                     << "PlayerInfo" << "Player" << "Name"
                                      << "Inventory" << "Location"
                                      << "Position" << "InvItem";
 
