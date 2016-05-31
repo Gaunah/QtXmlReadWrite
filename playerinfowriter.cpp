@@ -1,5 +1,7 @@
 #include "playerinfowriter.h"
 
+#include <QDebug>
+
 PlayerInfoWriter::PlayerInfoWriter(QIODevice *dev)
 {
     if (dev != nullptr) {

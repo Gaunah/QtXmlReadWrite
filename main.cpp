@@ -10,8 +10,9 @@ int main(int argc, char **argv)
     Q_UNUSED(argc)
     Q_UNUSED(argv)
 
+    //quick and dirty file path
     QDir dir  = QDir::current();
-    dir.cd("../QtSerialization");
+    dir.cd("../QtXmlReadWrite");
     QString path = dir.absolutePath() + "/PlayerInfo.xml";
 
     if (!QFile::exists(path)) {
