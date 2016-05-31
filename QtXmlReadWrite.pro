@@ -1,6 +1,6 @@
 QT += core
 
-TARGET = QtSerialization
+TARGET = QtXmlReadWrite
 
 SOURCES += \
     main.cpp \
