@@ -14,7 +14,7 @@ PlayerInfoWriter::PlayerInfoWriter(QIODevice *dev)
 
 bool PlayerInfoWriter::write(PlayerInfo pinfo)
 {
-   return writePlayerInfo(pinfo);
+    return writePlayerInfo(pinfo);
 }
 
 bool PlayerInfoWriter::writePlayerInfo(PlayerInfo p_info)
@@ -35,7 +35,20 @@ void PlayerInfoWriter::writePlayer(Player player)
     playerAttr.append("hp", QString::number(player.hitPoints));
     playerAttr.append("exp", QString::number(player.experience));
     writer.writeAttributes(playerAttr);
-    //TODO
+
+    writer.writeTextElement(nameByToken(T_Name), player.name);
+
+    writeInventory(player.inventory);
+
+    writer.writeStartElement(nameByToken(T_Location));
+    writer.writeAttribute("name", player.location);
+    writer.writeStartElement(nameByToken(T_Position));
+    QXmlStreamAttributes posAttrs;
+    posAttrs.append("x" , QString::number(player.position.x()));
+    posAttrs.append("y" , QString::number(player.position.y()));
+    writer.writeAttributes(posAttrs);
+    writer.writeEndElement();
+
     writer.writeEndElement();
 }
 
