@@ -54,5 +54,36 @@ void PlayerInfoWriter::writePlayer(Player player)
 
 void PlayerInfoWriter::writeInventory(QList<InventoryItem> inventory)
 {
-    qDebug() << Q_FUNC_INFO << "not implemented!";
+    writer.writeStartElement(nameByToken(T_Inventory));
+    foreach (InventoryItem item, inventory) {
+        writer.writeStartElement(nameByToken(T_InvItem));
+        QXmlStreamAttributes itemAttrs;
+        QString typeStr;
+        switch (item.type) {
+        case InventoryItem::Weapon:
+            typeStr = "Weapon";
+            break;
+        case InventoryItem::Armor:
+            typeStr = "Armor";
+            break;
+        case InventoryItem::Book:
+            typeStr = "Book";
+            break;
+        case InventoryItem::Gem:
+            typeStr = "Gem";
+            break;
+        case InventoryItem::Other:
+            typeStr = "Other";
+            break;
+        default:
+            typeStr = "Unknown";
+            break;
+        }
+        itemAttrs.append("type", typeStr);
+        itemAttrs.append("durability", QString::number(item.durability));
+        writer.writeAttributes(itemAttrs);
+        writer.writeTextElement("SubType", item.subType);
+        writer.writeEndElement();
+    }
+    writer.writeEndElement();
 }
